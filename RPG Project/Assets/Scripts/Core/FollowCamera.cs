@@ -6,6 +6,7 @@ namespace RPG.Core
     {
 
         [SerializeField] GameObject Target;
+        float speed = 5;
 
         private void LateUpdate()
         {

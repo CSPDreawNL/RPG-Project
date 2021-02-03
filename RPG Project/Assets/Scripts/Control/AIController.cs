@@ -15,11 +15,14 @@ namespace RPG.Control
         Mover mover;
         ActionScheduler actionScheduler;
 
+        [SerializeField] PatrolPath patrolPath;
+
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 3f;
         [SerializeField] float waypointTime = 3f;
         [SerializeField] float waypointTolerance = 1f;
-        [SerializeField] PatrolPath patrolPath;
+        [Range(0,1)]
+        [SerializeField] float patrolSpeedFraction = 0.5f;
 
         Vector3 guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
@@ -91,7 +94,7 @@ namespace RPG.Control
             }
             if (timeSinceAtWaypoint > waypointTime)
             {
-                mover.StartMoveAction(nextPosition);
+                mover.StartMoveAction(nextPosition, patrolSpeedFraction);
             }
         }
 
