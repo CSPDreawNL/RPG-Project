@@ -77,21 +77,22 @@ namespace RPG.Combat
         {
             if (combatTarget == null)
                 return false;
-            
+
             Health enemyHealth = combatTarget.GetComponent<Health>();
             return enemyHealth != null && !enemyHealth.IsDead();
         }
 
         public void Attack(GameObject combatTarget)
         {
-                target = combatTarget.GetComponent<Health>();
-                actionScheduler.StartAction(this);
+            target = combatTarget.GetComponent<Health>();
+            actionScheduler.StartAction(this);
         }
 
         public void Cancel()
         {
             StopAttack();
             target = null;
+            GetComponent<Mover>().Cancel();
         }
 
         private void StopAttack()

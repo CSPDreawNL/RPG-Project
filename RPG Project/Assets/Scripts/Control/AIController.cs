@@ -25,8 +25,10 @@ namespace RPG.Control
         [SerializeField] float patrolSpeedFraction = 0.5f;
 
         Vector3 guardPosition;
+
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSinceAtWaypoint = Mathf.Infinity;
+
         int currentWaypointIndex = 0;
 
         private void Start()
