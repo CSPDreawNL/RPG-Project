@@ -26,8 +26,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609c162bc4fa67a4898831be710b2489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patrolPath: {fileID: 0}
   chaseDistance: 5
   suspicionTime: 6
+  waypointTime: 3
+  waypointTolerance: 1
+  patrolSpeedFraction: 0.5
 --- !u!114 &7998129537506610133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +75,23 @@ PrefabInstance:
       propertyPath: weaponDamage
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1999558596796899514, guid: 7873024e1102721468909bccc52dac32,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 1804602115036660839}
+    - target: {fileID: 1999558596796899514, guid: 7873024e1102721468909bccc52dac32,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 42df41fa9db725d4886a378847318451,
+        type: 2}
+    - target: {fileID: 1999558596796899514, guid: 7873024e1102721468909bccc52dac32,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 42df41fa9db725d4886a378847318451,
+        type: 2}
     - target: {fileID: 3856676650879263076, guid: 7873024e1102721468909bccc52dac32,
         type: 3}
       propertyPath: health
@@ -162,6 +183,12 @@ GameObject:
 --- !u!95 &8261392660836558162 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1576636174, guid: 7873024e1102721468909bccc52dac32,
+    type: 3}
+  m_PrefabInstance: {fileID: 8261392661837458012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1804602115036660839 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7758964201333911099, guid: 7873024e1102721468909bccc52dac32,
     type: 3}
   m_PrefabInstance: {fileID: 8261392661837458012}
   m_PrefabAsset: {fileID: 0}

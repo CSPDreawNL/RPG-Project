@@ -15,11 +15,18 @@ namespace RPG.Combat
         [SerializeField] Animator animator;                 // Used for getting the animator
 
         [Header("Floats")]
-        [SerializeField] float weaponRange;                 // Used for getting the current weapon range
         [SerializeField] float timeBetweenAttacks;          // Used for making sure the animation plays completely and that we don't hit them too fast
-        [SerializeField] float weaponDamage;                // Used for dealing damage to the enemy
         float timeSinceLastAttack = Mathf.Infinity;         // Used for checking how  much time has passed since we last hit an enemy
 
+        [SerializeField] Transform handTransform = null;
+        [SerializeField] Weapon defaultWeapon = null;
+        Weapon currentWeapon = null;
+
+
+        private void Start()
+        {
+            EquipWeapon(defaultWeapon);
+        }
 
         private void Update()
         {
@@ -40,6 +47,13 @@ namespace RPG.Combat
                 mover.Cancel();
                 AttackBehaviour();
             }
+        }
+
+        public void EquipWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+            Animator animator = GetComponent<Animator>();
+            weapon.Spawn(handTransform, animator);
         }
 
         private void AttackBehaviour()
@@ -65,12 +79,12 @@ namespace RPG.Combat
             if (target == null)
                 return;
 
-            target.TakeDamage(weaponDamage);
+            target.TakeDamage(currentWeapon.GetDamage());
         }
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
         }
 
         public bool CanAttack(GameObject combatTarget)
