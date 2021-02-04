@@ -18,7 +18,8 @@ namespace RPG.Combat
         [SerializeField] float timeBetweenAttacks;          // Used for making sure the animation plays completely and that we don't hit them too fast
         float timeSinceLastAttack = Mathf.Infinity;         // Used for checking how  much time has passed since we last hit an enemy
 
-        [SerializeField] Transform handTransform = null;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
         Weapon currentWeapon = null;
 
@@ -53,7 +54,7 @@ namespace RPG.Combat
         {
             currentWeapon = weapon;
             Animator animator = GetComponent<Animator>();
-            weapon.Spawn(handTransform, animator);
+            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
         private void AttackBehaviour()
@@ -79,7 +80,19 @@ namespace RPG.Combat
             if (target == null)
                 return;
 
-            target.TakeDamage(currentWeapon.GetDamage());
+            if (currentWeapon.HasProjectile())
+            {
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            }
+            else
+            {
+                target.TakeDamage(currentWeapon.GetDamage());
+            }
+        }
+        // Bow animation
+        void Shoot()
+        {
+            Hit();
         }
 
         private bool GetIsInRange()
