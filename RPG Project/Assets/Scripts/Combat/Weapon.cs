@@ -41,7 +41,7 @@ namespace RPG.Combat
             if (oldweapon == null)
                 return;
 
-            oldweapon.name = "DESTROYOLDWEAPON";
+            oldweapon.name = "DESTROYING";
             Destroy(oldweapon.gameObject);
         }
 
