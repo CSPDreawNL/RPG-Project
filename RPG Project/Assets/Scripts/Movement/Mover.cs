@@ -39,6 +39,11 @@ namespace RPG.Movement
             navMeshAgent.destination = destination;
             navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedfraction);
             navMeshAgent.isStopped = false;
+
+            if (health.IsDead())
+            {
+                navMeshAgent.speed = 0;
+            }
         }
 
         public void Cancel()
