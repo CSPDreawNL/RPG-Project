@@ -50,6 +50,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 3829965567718719451}
+    - target: {fileID: 1576636179, guid: 7873024e1102721468909bccc52dac32, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1999558596796899514, guid: 7873024e1102721468909bccc52dac32,
         type: 3}
       propertyPath: weaponDamage
