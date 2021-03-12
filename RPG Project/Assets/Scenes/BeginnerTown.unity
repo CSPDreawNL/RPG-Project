@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1258784963}
-  m_PathPosition: 1
+  m_PathPosition: 0
   m_PositionUnits: 2
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -7482,7 +7482,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224676073}
-  m_LocalRotation: {x: 0.17514813, y: 0.20627807, z: -0.037558027, w: 0.96195734}
+  m_LocalRotation: {x: 0.033442114, y: 0.9627146, z: -0.140903, w: 0.22849204}
   m_LocalPosition: {x: 20.610575, y: 26.331036, z: -80.90718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10212,7 +10212,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747885262}
-  m_LocalRotation: {x: 0.19903886, y: 0.4804066, z: -0.11293701, w: 0.84666306}
+  m_LocalRotation: {x: 0.19903886, y: 0.48040658, z: -0.11293701, w: 0.84666306}
   m_LocalPosition: {x: -23.913647, y: 40.124912, z: -39.152946}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12167,6 +12167,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591948399933475204, guid: 19274167c834ab34e8322e76aa23aa01,
+        type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591948400827884951, guid: 19274167c834ab34e8322e76aa23aa01,
+        type: 3}
+      propertyPath: near clip plane
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8591948400864190820, guid: 19274167c834ab34e8322e76aa23aa01,
         type: 3}
