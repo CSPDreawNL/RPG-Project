@@ -23,7 +23,6 @@ namespace RPG.Saving
             }
         }
 
-
         public void Load(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
@@ -36,6 +35,7 @@ namespace RPG.Saving
                 playerTransform.position = position.ToVector();
             }
         }
+
         private Transform GetPlayerTransform()
         {
             return GameObject.FindWithTag("Player").transform;
