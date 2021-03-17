@@ -17,10 +17,9 @@ namespace RPG.Saving
             using (FileStream stream = File.Open(path, FileMode.Create))
             {
                 Transform playerTransform = GetPlayerTransform();
-                byte[] buffer = SerializedVector(playerTransform.position);
-
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(stream, playerTransform.position);
+                SerializableVector3 position = new SerializableVector3(playerTransform.position);
+                formatter.Serialize(stream, position);
             }
         }
 
@@ -31,11 +30,10 @@ namespace RPG.Saving
             print("Loading from " + path);
             using (FileStream stream = File.Open(path, FileMode.Open))
             {
-                byte[] buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, buffer.Length);
-
                 Transform playerTransform = GetPlayerTransform();
-                playerTransform.position = DeserializeVector(buffer);
+                BinaryFormatter formatter = new BinaryFormatter();
+                SerializableVector3 position = (SerializableVector3)formatter.Deserialize(stream);
+                playerTransform.position = position.ToVector();
             }
         }
         private Transform GetPlayerTransform()
