@@ -7,6 +7,11 @@ namespace RPG.Saving
         const string defaultQuickSave = "QuickSave";
         const string defaultSave = "Save";
 
+        private void Start()
+        {
+            Load();
+        }
+
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.F5))
@@ -19,13 +24,22 @@ namespace RPG.Saving
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                GetComponent<SavingSystem>().Save(defaultSave);
+                Save();
             }
             if (Input.GetKeyDown(KeyCode.L))
             {
-                GetComponent<SavingSystem>().Load(defaultSave);
+                Load();
             }
+        }
 
+        public void Save()
+        {
+            GetComponent<SavingSystem>().Save(defaultSave);
+        }
+
+        public void Load()
+        {
+            GetComponent<SavingSystem>().Load(defaultSave);
         }
     }
 }
