@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using RPG.Saving;
+using TMPro;
 
 namespace RPG.Core
 {
@@ -7,6 +8,7 @@ namespace RPG.Core
     {
         [Header("Components")]
         [SerializeField] Animator animator;
+        [SerializeField] TextMeshProUGUI healthText;
 
         [Header("Floats")]
         [SerializeField] float healthPoints;
@@ -18,6 +20,10 @@ namespace RPG.Core
             return isDead;
         }
 
+        private void Start()
+        {
+            healthText.text = healthPoints.ToString();
+        }
 
         public void TakeDamage(float damage)
         {
@@ -26,6 +32,7 @@ namespace RPG.Core
             {
                 Die();
             }
+            healthText.text = healthPoints.ToString();
         }
 
         private void Die()
@@ -36,6 +43,7 @@ namespace RPG.Core
             isDead = true;
             animator.SetTrigger("die");
             GetComponent<ActionScheduler>().CancelCurrentAction();
+            Destroy(healthText);
         }
 
         public object CaptureState()
@@ -47,7 +55,10 @@ namespace RPG.Core
         {
             healthPoints = (float)state;
             if (healthPoints <= 0)
+            {
                 Die();
+            }
+            healthText.text = healthPoints.ToString();
         }
     }
 }
