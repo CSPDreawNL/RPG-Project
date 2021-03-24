@@ -66,6 +66,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 8261392660836558162}
+    - target: {fileID: -874344729122887481, guid: 7873024e1102721468909bccc52dac32,
+        type: 3}
+      propertyPath: maxHealth
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1576636179, guid: 7873024e1102721468909bccc52dac32, type: 3}
       propertyPath: m_Speed
       value: 4

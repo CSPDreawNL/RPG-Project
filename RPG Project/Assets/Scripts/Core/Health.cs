@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using RPG.Saving;
 using TMPro;
+using UnityEngine.AI;
 
 namespace RPG.Core
 {
@@ -12,6 +13,8 @@ namespace RPG.Core
 
         [Header("Floats")]
         [SerializeField] float healthPoints;
+        [SerializeField] float maxHealth;
+        [SerializeField] float timer;
 
         bool isDead = false;
 
@@ -23,6 +26,28 @@ namespace RPG.Core
         private void Start()
         {
             healthText.text = healthPoints.ToString();
+        }
+
+        private void Update()
+        {
+            if (healthPoints < maxHealth)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                timer = 0;
+            }
+
+            if (!IsDead())
+            {
+                if (healthPoints < maxHealth && timer > 10f)
+                {
+                    healthPoints++;
+                    timer = 0;
+                    healthText.text = healthPoints.ToString();
+                }
+            }
         }
 
         public void TakeDamage(float damage)
@@ -42,8 +67,16 @@ namespace RPG.Core
 
             isDead = true;
             animator.SetTrigger("die");
+            GetComponent<NavMeshAgent>().enabled = false;
             GetComponent<ActionScheduler>().CancelCurrentAction();
-            Destroy(healthText);
+            healthText.enabled = false;
+        }
+
+        private void Reborn()
+        {
+            isDead = false;
+            healthText.enabled = true;
+            healthText.text = healthPoints.ToString();
         }
 
         public object CaptureState()
@@ -57,6 +90,10 @@ namespace RPG.Core
             if (healthPoints <= 0)
             {
                 Die();
+            }
+            if (healthPoints > 0 && !IsDead())
+            {
+                Reborn();
             }
             healthText.text = healthPoints.ToString();
         }
