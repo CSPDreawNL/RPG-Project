@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using RPG.Saving;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         [Header("Scripts")]
         [SerializeField] Mover mover;                       // Used for getting the mover script
@@ -26,7 +27,10 @@ namespace RPG.Combat
 
         private void Start()
         {
-            EquipWeapon(defaultWeapon);
+            if (currentWeapon == null)
+            {
+                EquipWeapon(defaultWeapon);
+            }
         }
 
         private void Update()
@@ -126,6 +130,17 @@ namespace RPG.Combat
         {
             animator.ResetTrigger("attack");
             animator.SetTrigger("stopAttack");
+        }
+
+        public object CaptureState()
+        {
+            return currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            Weapon weapon = Resources.Load<Weapon>((string)state);
+            EquipWeapon(weapon);
         }
     }
 }
